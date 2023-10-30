@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!--
+  ~ Copyright © 2023 Labofgood. All rights reserved.
+  ~ See COPYING.txt for license details.
+  ~
+  ~ @author    Anton Abramchenko <anton.abramchenko@labofgood.com>
+  ~ @copyright 2023 Labofgood
+  ~ @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+  -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Labofgood\EngraveProduct\Api\Data\EngraveProductInterface"
+                type="Labofgood\EngraveProduct\Model\Data\EngraveProduct"/>
+    <preference for="Labofgood\EngraveProduct\Api\EngraveProductRepositoryInterface"
+                type="Labofgood\EngraveProduct\Model\EngraveProductRepository"/>
+    <preference for="Labofgood\EngraveProduct\Api\EngraveProductSearchResultsInterface"
+                type="Labofgood\EngraveProduct\Model\EngraveProductSearchResults"/>
+    <preference for="Labofgood\EngraveProduct\Api\ConfigProviderInterface"
+                type="Labofgood\EngraveProduct\Model\ConfigProvider"/>
+    <preference for="Labofgood\EngraveProduct\Api\OrderStatisticCollectorInterface"
+                type="Labofgood\EngraveProduct\Model\Service\Statistic\OrderStatisticCollector"/>
+    <preference for="Labofgood\EngraveProduct\Api\OrderStatisticOptionInterface"
+                type="Labofgood\EngraveProduct\Model\Service\Statistic\OrderStatisticOption"/>
+    <preference for="Labofgood\EngraveProduct\Api\EngraveProductManagementInterface"
+                type="Labofgood\EngraveProduct\Model\Service\ExtensionAttribute\EngraveProductManagement"/>
+    <preference for="Labofgood\EngraveProduct\Api\HasEngravedItemsManagementInterface"
+                type="Labofgood\EngraveProduct\Model\Service\ExtensionAttribute\HasEngravedItemsManagement"/>
+
+
+    <virtualType name="Magento\Sales\Model\ResourceModel\Order\Grid"
+                 type="Magento\Sales\Model\ResourceModel\Grid">
+        <arguments>
+            <argument name="columns" xsi:type="array">
+                <item name="has_engraved_items" xsi:type="string">sales_order.has_engraved_items</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Magento\Framework\Console\CommandListInterface">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="Labofgood_EngraveProduct::order_statistic_command"
+                      xsi:type="object">Labofgood\EngraveProduct\Console\Command\OrderStatisticCommand</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

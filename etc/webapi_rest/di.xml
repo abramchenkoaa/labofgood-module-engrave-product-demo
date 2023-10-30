@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!--
+  ~ Copyright © 2023 Labofgood. All rights reserved.
+  ~ See COPYING.txt for license details.
+  ~
+  ~ @author    Anton Abramchenko <anton.abramchenko@labofgood.com>
+  ~ @copyright 2023 Labofgood
+  ~ @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+  -->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Quote\Model\Quote">
+        <plugin name="Labofgood_EngraveProduct::rest_add_engraving_data_on_add_to_cart"
+                type="Labofgood\EngraveProduct\Plugin\Quote\AddEngraveDataToCart"
+                sortOrder="10"/>
+        <plugin name="Labofgood_EngraveProduct::rest_add_engrave_product_to_quote_items"
+                type="Labofgood\EngraveProduct\Plugin\Quote\LoadEngraveProduct"
+                sortOrder="10"/>
+    </type>
+    <type name="Magento\Quote\Model\Quote\Item\ToOrderItem">
+        <plugin name="Labofgood_EngraveProduct::rest_copy_engrave_products_to_order_item"
+                type="Labofgood\EngraveProduct\Plugin\Quote\ToOrderItem\CopyEngraveProduct"
+                sortOrder="10"/>
+    </type>
+    <type name="Magento\Sales\Api\OrderManagementInterface">
+        <plugin name="Labofgood_EngraveProduct::rest_save_has_engraved_items_flag_to_order"
+                type="Labofgood\EngraveProduct\Plugin\Order\SetHasEngravedItems"
+                sortOrder="10" />
+    </type>
+    <type name="Magento\Sales\Api\OrderRepositoryInterface">
+        <plugin name="Labofgood_EngraveProduct:rest_save_has_engraved_items_flag_to_order"
+                type="Labofgood\EngraveProduct\Plugin\Order\SaveHasEngravedItems"/>
+        <plugin name="Labofgood_EngraveProduct:rest_load_has_engraved_items_flag_to_order"
+                type="Labofgood\EngraveProduct\Plugin\Order\LoadHasEngravedItems"/>
+    </type>
+</config>

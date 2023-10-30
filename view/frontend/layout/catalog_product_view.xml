@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!--
+  ~ Copyright © 2023 Labofgood. All rights reserved.
+  ~ See COPYING.txt for license details.
+  ~
+  ~ @author    Anton Abramchenko <anton.abramchenko@labofgood.com>
+  ~ @copyright 2023 Labofgood
+  ~ @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+  -->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="product.info.main">
+            <block class="Magento\Framework\View\Element\Template"
+                   name="product.engrave.form"
+                   template="Labofgood_EngraveProduct::product/view/engrave-product.phtml"
+                   after="-">
+                <arguments>
+                    <argument name="engrave_view_model" xsi:type="object">
+                        Labofgood\EngraveProduct\ViewModel\Product\EngraveProductForm
+                    </argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+        <referenceContainer name="before.body.end">
+            <block class="Magento\Framework\View\Element\Template"
+                   name="product.engrave.form.init"
+                   template="Labofgood_EngraveProduct::product/view/engrave-product-js-init.phtml"
+                   after="-">
+                <arguments>
+                    <argument name="engrave_view_model" xsi:type="object">
+                        Labofgood\EngraveProduct\ViewModel\Product\EngraveProductForm
+                    </argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+    </body>
+</page>
