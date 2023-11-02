@@ -50,9 +50,10 @@ Please follow the instruction:
 Run the following command `php bin/magento module:uninstall Labofgood_EngraveProduct`
 
 ## Support and Feedback
-Being an example for a technical task, this module is not meant for production use.
-However, constructive feedback or queries related to its implementation can be directed to
+Being an example for a technical task, this module is not meant for production use.\
+However, constructive feedback or queries related to its implementation can be directed to\
 Anton Abramchenko <anton.abramchenko@labofgood.com>
 
 ## License
-Open Software License 3.0 (https://opensource.org/licenses/OSL-3.0)
+Copyright © 2023 Anton Abramchenko. All rights reserved.\
+This software is under the "3-Clause BSD License" license (see source). 
